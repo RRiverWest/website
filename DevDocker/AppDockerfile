@@ -1,22 +1,9 @@
 FROM node
 
-USER root
-RUN apt update && \
-    apt install -y curl git unzip wget ninja-build gettext cmake build-essential
-
-RUN git clone https://github.com/neovim/neovim && \
-    cd neovim && \
-    git checkout stable && \
-    make CMAKE_BUILD_TYPE=RelWithDebInfo && \
-    make install
-
-RUN npm install -g pm2
-
 RUN chown -R node:node /home/node/
 
 USER node
-RUN git clone https://github.com/RRiverWest/lazy-nvim-dotfile /home/node/.config/nvim
-WORKDIR /home/node
+WORKDIR /home/node/app
 ENV HOME=/home/node
 
 CMD ["bash"]
