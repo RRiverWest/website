@@ -60,7 +60,7 @@ export function AppSidebar
 					</SidebarMenu>
 				</SidebarContent>
 			</Sidebar>
-			<main>
+			<main className="flex-1 min-w-0 flex flex-col">
 				{children}
 			</main>
 		</SidebarProvider>

@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Topbar } from "@/components/topbar";
 
@@ -29,12 +28,12 @@ export default function RootLayout({ children }: Readonly<{
 					enableSystem
 					disableTransitionOnChange
 				>
-					<AppSidebar>
-						<div className="flex-1">
-							<Topbar />
+					<div>
+						<Topbar />
+						<div className="mx-auto w-full m-8">
 							{children}
 						</div>
-					</AppSidebar>
+					</div>
 				</ThemeProvider>
 			</body>
 		</html >
