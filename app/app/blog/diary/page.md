@@ -1,0 +1,1 @@
+# Diary blog Index
