@@ -18,8 +18,23 @@ export function AutoBreadcrumb() {
 
 	return (
 
-		<Breadcrumb className="text-base">
-			<BreadcrumbList className="text-base">
+		<Breadcrumb
+			className="
+    text-sm
+    sm:text-base
+    lg:text-lg
+    xl:text-xl
+  "
+		>
+			<BreadcrumbList
+				className="
+      items-center
+      text-sm
+      sm:text-base
+      lg:text-lg
+      xl:text-xl
+    "
+			>
 				<BreadcrumbItem>
 					<BreadcrumbLink asChild>
 						<Link href="/">Home</Link>
