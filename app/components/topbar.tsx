@@ -1,60 +1,61 @@
-import { Separator } from "@radix-ui/react-separator";
 import { AutoBreadcrumb } from "./auto-breadcrumb";
 import ModeToggle from "./mode-toggle";
 import { Button } from "./ui/button";
 import { FaHome } from "react-icons/fa";
 import Link from "next/link";
+import { NavigationMenuDemo } from "./navigation-menu-demo";
 
 export function Topbar() {
 	return (
 		<header
 			className="
-    h-16 lg:h-18
-    flex items-center
-    gap-3
-    px-3 sm:px-6
-    bg-[var(--topbar-bg)]
-    text-[var(--topbar-text)]
-    border-b
-  "
+        relative
+        flex items-center
+				justify-between
+        h-16 lg:h-18
+        w-full
+        px-3 sm:px-6
+        bg-[var(--topbar-bg)]
+        text-[var(--topbar-text)]
+        border-b
+      "
 		>
-			<div
-				className="
-          flex items-center gap-3
-          w-full
-          sm:w-auto
-          sm:justify-start
-          lg:ml-24   /* PCでは左寄り中央 */
-        "
-			>
+			{/* 左側 */}
+			<div className="flex items-center gap-3">
 				<Button
-					variant="outline"
+					variant="secondary"
 					asChild
 					className="
-            h-14 px-5
+            h-9 px-4 sm:px-5
             rounded-2xl
+            bg-background hover:bg-accent
+						text-foreground hover:text-background
             shadow-sm
-            flex items-center gap-2
-            bg-white/80
-            hover:bg-white
+						hidden
+            lg:flex items-center gap-2
+						border
+						border-accent
           "
 				>
 					<Link href="/">
-						<FaHome className="h-6 w-6" />
-						<span className="text-base lg:text-lg font-semibold">
+						<FaHome className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
+						<span className="text-sm sm:text-base lg:text-lg font-semibold">
 							RRiverWest
 						</span>
 					</Link>
 				</Button>
-
-				<div className="h-14 flex items-center">
-					<ModeToggle />
-				</div>
+				<ModeToggle />
 			</div>
 
-			<div className="hidden sm:flex ml-auto">
+			{/* 中央 NavigationMenu */}
+			<div className="grow place-items-center">
+				<NavigationMenuDemo />
+			</div>
+
+			{/* 右側 */}
+			<div className="ml-auto hidden sm:flex">
 				<AutoBreadcrumb />
 			</div>
 		</header>
-	);
+	)
 }

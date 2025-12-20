@@ -19,14 +19,15 @@ export default function ModeToggle() {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button
-					variant="outline"
+					variant="secondary"
 					className="
-      h-14 w-14
-      rounded-2xl
-      bg-white/80 hover:bg-white
-      shadow-sm
-      relative
-    "
+				rounded-full
+				shadow-sm
+				relative
+				border border-accent 
+				bg-background
+				hover:bg-accent
+		  "
 				>
 					<Sun
 						className="
