@@ -43,75 +43,109 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+	--topbar-bg: var(--topbar-bg);
+
 }
 
 :root {
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.646 0.222 41.116);
-  --primary-foreground: oklch(0.98 0.016 73.684);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.75 0.183 55.934);
-  --chart-1: oklch(0.837 0.128 66.29);
-  --chart-2: oklch(0.705 0.213 47.604);
-  --chart-3: oklch(0.646 0.222 41.116);
-  --chart-4: oklch(0.553 0.195 38.402);
-  --chart-5: oklch(0.47 0.157 37.304);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.646 0.222 41.116);
-  --sidebar-primary-foreground: oklch(0.98 0.016 73.684);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.75 0.183 55.934);
+	/* radius */
+	--radius: 1rem;
+
+  --background: #F6F0E8;              /* ミルクティー */
+  --foreground: #4A3A33;              /* ココアブラウン */
+
+  --card: #FBF7F2;                    /* 紙っぽい */
+  --card-foreground: #4A3A33;
+
+  --popover: #FBF7F2;
+  --popover-foreground: #4A3A33;
+
+  --primary: #C07A7A;                 /* ダスティローズ */
+  --primary-foreground: #FFF6F4;
+
+  --secondary: #EFE6DB;               /* クリーム */
+  --secondary-foreground: #5C4A43;
+
+  --muted: #EFE6DB;
+  --muted-foreground: #8A7A72;
+
+  --accent: #E0A899;                  /* ピーチ */
+  --accent-foreground: #4A3A33;
+
+  --destructive: #C75C5C;
+  --border: #E3D6CB;
+  --input: #E3D6CB;
+  --ring: #C07A7A;
+
+  /* sidebar */
+  --sidebar: #F2E8DD;
+  --sidebar-foreground: #4A3A33;
+  --sidebar-primary: #C07A7A;
+  --sidebar-primary-foreground: #FFF6F4;
+  --sidebar-accent: #E0A899;
+  --sidebar-accent-foreground: #4A3A33;
+  --sidebar-border: #E3D6CB;
+  --sidebar-ring: #C07A7A;
+
+  /* charts（全部暖色） */
+  --chart-1: #C07A7A;
+  --chart-2: #E0A899;
+  --chart-3: #D6A36C;
+  --chart-4: #B88B6A;
+  --chart-5: #A67C6B;
+
+	--topbar-bg: #E2D5C7;        /* 濃いミルクティー */
+	--topbar-text: #4A3A33;
+	--topbar-shadow: rgba(160, 120, 120, 0.15);
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.705 0.213 47.604);
-  --primary-foreground: oklch(0.98 0.016 73.684);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.408 0.123 38.172);
-  --chart-1: oklch(0.837 0.128 66.29);
-  --chart-2: oklch(0.705 0.213 47.604);
-  --chart-3: oklch(0.646 0.222 41.116);
-  --chart-4: oklch(0.553 0.195 38.402);
-  --chart-5: oklch(0.47 0.157 37.304);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.705 0.213 47.604);
-  --sidebar-primary-foreground: oklch(0.98 0.016 73.684);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.408 0.123 38.172);
+  --background: #2C211D;              /* ダークココア */
+  --foreground: #F1E7DA;              /* クリーム */
+
+  --card: #3E2F2A;
+  --card-foreground: #F1E7DA;
+
+  --popover: #3E2F2A;
+  --popover-foreground: #F1E7DA;
+
+  --primary: #D08A8A;                 /* ローズ */
+  --primary-foreground: #2C211D;
+
+  --secondary: #362925;
+  --secondary-foreground: #E6D6C8;
+
+  --muted: #362925;
+  --muted-foreground: #B6A79B;
+
+  --accent: #E3B6A8;                  /* ピーチベージュ */
+  --accent-foreground: #2C211D;
+
+  --destructive: #D66A6A;
+  --border: #4A3833;
+  --input: #4A3833;
+  --ring: #D08A8A;
+
+  /* sidebar */
+  --sidebar: #261C18;
+  --sidebar-foreground: #F1E7DA;
+  --sidebar-primary: #D08A8A;
+  --sidebar-primary-foreground: #2C211D;
+  --sidebar-accent: #E3B6A8;
+  --sidebar-accent-foreground: #2C211D;
+  --sidebar-border: #4A3833;
+  --sidebar-ring: #D08A8A;
+
+  /* charts */
+  --chart-1: #D08A8A;
+  --chart-2: #E3B6A8;
+  --chart-3: #E0B072;
+  --chart-4: #C4906A;
+  --chart-5: #A67C6B;
+	
+  --topbar-bg: #362925;        /* チョコレートブラウン */
+  --topbar-text: #F1E7DA;     /* クリーム */
+
 }
 
 @layer base {
