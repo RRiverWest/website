@@ -12,7 +12,7 @@ export function Topbar() {
         relative
         flex items-center
 				justify-between
-        h-16 lg:h-18
+				py-3
         w-full
         px-3 sm:px-6
         bg-[var(--topbar-bg)]
