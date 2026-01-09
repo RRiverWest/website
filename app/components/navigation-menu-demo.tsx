@@ -60,10 +60,10 @@ export function NavigationMenuDemo() {
 								</NavigationMenuLink>
 							</li>
 							<ListItem href="/about/privarcy" title="プライバシーポリシー">
-								How to install dependencies and structure your app.
+								プライバシーポリシーについて
 							</ListItem>
 							<ListItem href="/about/site" title="このサイトについて">
-								Styles for headings, paragraphs, lists...etc
+								このサイトの何のためなのか
 							</ListItem>
 						</ul>
 					</NavigationMenuContent>
