@@ -7,4 +7,7 @@ deploy_production:
     - main
   script:
     - cd PerformDocker
-    - /bin/docker compose up -d --build
+    - pwd
+    - id 
+    - which docker
+    - docker compose up -d --build
