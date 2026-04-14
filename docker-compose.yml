@@ -7,6 +7,8 @@ services:
       - "3000"
     tty: true
     restart: always
+    networks:
+      - shared
 
   nginx:
     build: ./nginx
@@ -19,3 +21,10 @@ services:
     depends_on:
       - app
     restart: always
+    networks:
+      - shared
+
+networks:
+  shared:
+    external: true
+    name: shared_network
