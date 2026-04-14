@@ -1,4 +1,4 @@
-FROM node:24-alpine
+FROM node:alpine
 
 USER root
 RUN chown -R node:node /home/node/
