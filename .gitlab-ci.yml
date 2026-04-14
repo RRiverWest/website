@@ -8,5 +8,4 @@ deploy_production:
   tags:
     - self-hosted
   script:
-    - cd PerformDocker
     - docker compose up -d --build
