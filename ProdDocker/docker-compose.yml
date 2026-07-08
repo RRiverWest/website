@@ -6,10 +6,8 @@ services:
     expose:
       - "3000"
     restart: unless-stopped
-    networks:
-      - web-network
 
 networks:
-  web-network:
+  default:
     name: web-network
-    driver: bridge
+    external: true
