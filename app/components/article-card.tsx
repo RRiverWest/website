@@ -1,5 +1,6 @@
+import fs from "fs";
+import path from "path";
 import Link from "next/link";
-import { getFrontmatter } from "@/lib/searchPath";
 import { cn } from "@/lib/utils";
 import {
   Card,
@@ -8,59 +9,78 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { CalendarDays } from "lucide-react";
+
+export interface ArticleMetadata {
+  title: string;
+  description?: string;
+  tags?: string[];
+  publishedAt?: string;
+}
+
+/**
+ * mdx ファイルから export const metadata = {...} を読み取ってパースする
+ */
+function getMetadataFromMdx(href: string): ArticleMetadata {
+  const mdxPath = path.join(process.cwd(), "app", ...href.split("/").filter(Boolean), "page.mdx");
+  const content = fs.readFileSync(mdxPath, "utf-8");
+
+  // export const metadata = { ... } を抽出
+  const match = content.match(/export\s+const\s+metadata\s*=\s*(\{[\s\S]*?\n\})/);
+  if (!match) {
+    return { title: href };
+  }
+
+  // JavaScript オブジェクトリテラルを評価
+  const fn = new Function(`return (${match[1]})`);
+  return fn() as ArticleMetadata;
+}
 
 interface ArticleCardProps {
-  /** md/mdxファイルへのパス (例: "app/blog/test/page.md") */
-  path: string;
+  /** ページへのルートパス (例: "/blog/test") */
+  href: string;
   className?: string;
 }
 
 /**
- * 指定したmd/mdxファイルのフロントマターを読み取り、Cardで表示するコンポーネント。
+ * href を渡すだけで対象 page.mdx の metadata を自動取得し、Card形式で表示する。
+ * 使い方: <ArticleCard href="/blog/test" />
  */
-export function ArticleCard({ path: filePath, className }: ArticleCardProps) {
-  const frontmatter = getFrontmatter(filePath);
-
-  // ファイルパスからルートパスを生成 (例: "app/blog/test/page.md" → "/blog/test")
-  const href =
-    "/" +
-    filePath.replace(/^app\//, "").replace(/\/page\.(md|mdx)$/, "");
-
-  const title = frontmatter.title || href;
+export function ArticleCard({ href, className }: ArticleCardProps) {
+  const metadata = getMetadataFromMdx(href);
+  const title = metadata.title || href;
 
   return (
     <Link href={href} className={cn("block transition-opacity hover:opacity-80", className)}>
       <Card>
         <CardHeader>
           <CardTitle>{title}</CardTitle>
-          {frontmatter.description && (
+          {metadata.description && (
             <CardDescription className="line-clamp-2">
-              {frontmatter.description}
+              {metadata.description}
             </CardDescription>
           )}
         </CardHeader>
 
-        {(frontmatter.date || (frontmatter.tags && frontmatter.tags.length > 0)) && (
+        {(metadata.publishedAt || (metadata.tags && metadata.tags.length > 0)) && (
           <CardContent>
-            <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-              {frontmatter.date && (
-                <time dateTime={frontmatter.date}>{frontmatter.date}</time>
+            <div className="flex flex-wrap items-center gap-3">
+              {metadata.publishedAt && (
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <CalendarDays className="size-3.5" />
+                  <time dateTime={metadata.publishedAt}>{metadata.publishedAt}</time>
+                </div>
               )}
 
-              {frontmatter.tags && frontmatter.tags.length > 0 && (
-                <>
-                  {frontmatter.date && <span aria-hidden="true">·</span>}
-                  <div className="flex flex-wrap gap-1">
-                    {frontmatter.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-secondary px-2 py-0.5 text-secondary-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </>
+              {metadata.tags && metadata.tags.length > 0 && (
+                <div className="flex flex-wrap gap-1.5">
+                  {metadata.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
               )}
             </div>
           </CardContent>
