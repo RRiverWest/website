@@ -8,4 +8,7 @@ deploy_production:
   tags:
     - self-hosted
   script:
+    - docker builder prune -f
+    - docker container prune -f
+    - docker system df
     - docker compose -f ProdDocker/docker-compose.yml up -d --build
