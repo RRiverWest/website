@@ -8,4 +8,4 @@ deploy_production:
   tags:
     - self-hosted
   script:
-    - docker compose up -d --build
+    - docker compose -f ProdDocker/docker-compose.yml up -d --build

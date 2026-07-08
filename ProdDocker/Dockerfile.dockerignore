@@ -1,0 +1,33 @@
+# Dependencies
+app/node_modules
+
+# Next.js build output
+app/.next
+
+# Git
+.git
+.gitignore
+
+# Docker
+DevDocker
+PerformDocker
+ProdDocker
+
+# Nginx (不使用)
+nginx
+
+# CI
+.gitlab-ci.yml
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.md
+!app/markdown/**/*.md
+!app/app/**/*.mdx

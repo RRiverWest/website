@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   // Optionally, add any other Next.js config below
   reactStrictMode: true,
+  // standalone モードで軽量な本番イメージを生成
+  output: 'standalone',
 }
  
 // Merge MDX config with Next.js config

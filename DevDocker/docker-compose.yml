@@ -12,8 +12,3 @@ services:
     tty: true
     networks:
       - shared
-
-networks:
-  shared:
-    external: true
-    name: shared_network
