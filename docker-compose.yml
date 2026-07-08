@@ -2,29 +2,8 @@ services:
   app:
     build:
       context: .
-      dockerfile: AppDockerfile
-    expose:
-      - "3000"
-    tty: true
-    restart: always
-    networks:
-      - shared
-
-  nginx:
-    build: ./nginx
-    container_name: nginx
-    expose:
-      - "443"
+    ports:
+      - "3000:3000"
     volumes:
-      - /etc/nginx/certs:/etc/nginx/certs:ro
-
-    depends_on:
-      - app
-    restart: always
-    networks:
-      - shared
-
-networks:
-  shared:
-    external: true
-    name: shared_network
+      - ./app/:/home/node/app
+    tty: true

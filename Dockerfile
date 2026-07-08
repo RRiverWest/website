@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:24-alpine
 
 USER root
 RUN chown -R node:node /home/node/
@@ -6,5 +6,6 @@ RUN chown -R node:node /home/node/
 USER node
 WORKDIR /home/node/app
 ENV HOME=/home/node
+# EXPOSE 3000
 
-CMD ["sh"]
+CMD ["npm","run","dev"]
