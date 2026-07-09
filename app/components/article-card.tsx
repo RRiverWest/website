@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import matter from "gray-matter";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {
@@ -20,21 +21,27 @@ export interface ArticleMetadata {
 }
 
 /**
- * mdx ファイルから export const metadata = {...} を読み取ってパースする
+ * mdx ファイルからメタデータを読み取る。
+ * YAMLフロントマター (---) と export const metadata の両方に対応。
  */
-function getMetadataFromMdx(href: string): ArticleMetadata {
+function getMetadataFromFile(href: string): ArticleMetadata {
   const mdxPath = path.join(process.cwd(), "app", ...href.split("/").filter(Boolean), "page.mdx");
   const content = fs.readFileSync(mdxPath, "utf-8");
 
-  // export const metadata = { ... } を抽出
-  const match = content.match(/export\s+const\s+metadata\s*=\s*(\{[\s\S]*?\n\})/);
-  if (!match) {
-    return { title: href };
+  // YAMLフロントマターを試す
+  const { data } = matter(content);
+  if (data && Object.keys(data).length > 0) {
+    return data as ArticleMetadata;
   }
 
-  // JavaScript オブジェクトリテラルを評価
-  const fn = new Function(`return (${match[1]})`);
-  return fn() as ArticleMetadata;
+  // fallback: export const metadata = {...} を正規表現で抽出
+  const match = content.match(/export\s+const\s+metadata\s*=\s*(\{[\s\S]*?\n\})/);
+  if (match) {
+    const fn = new Function(`return (${match[1]})`);
+    return fn() as ArticleMetadata;
+  }
+
+  return { title: href };
 }
 
 interface ArticleCardProps {
@@ -44,11 +51,11 @@ interface ArticleCardProps {
 }
 
 /**
- * href を渡すだけで対象 page.mdx の metadata を自動取得し、Card形式で表示する。
+ * href を渡すだけで対象 page.mdx のメタデータを自動取得し、Card形式で表示する。
  * 使い方: <ArticleCard href="/blog/test" />
  */
 export function ArticleCard({ href, className }: ArticleCardProps) {
-  const metadata = getMetadataFromMdx(href);
+  const metadata = getMetadataFromFile(href);
   const title = metadata.title || href;
 
   return (
