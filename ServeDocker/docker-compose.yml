@@ -1,0 +1,18 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - "3000"
+    volumes:
+      - ../app/.next/standalone:/app
+      - ../app/.next/static:/app/.next/static
+      - ../app/public:/app/public
+    networks:
+      - web-network
+    restart: unless-stopped
+
+networks:
+  web-network:
+    external: true
