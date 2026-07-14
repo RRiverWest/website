@@ -1,33 +1,41 @@
 ---
 title: "授業で作ったWEBアプリ"
-description: "3年の実習で作った物の記録"
+description: "リアルタイム対戦できる五目並べゲーム"
 tags: ["Nextjs", "共同開発"]
 publishedAt: "2026-07-09"
 ---
+
+import { ArticleHeader } from "@/components/article-header";
+import { TableOfContents } from "@/components/table-of-contents";
 import { LinkCard } from "@/components/link-card";
 
-# オンライン五目並べ対戦ゲーム
+<ArticleHeader {...frontmatter} />
+
+**オンライン五目並べ対戦ゲーム**
+
+<TableOfContents />
+
 ---
 
-
-## 授業カリキュラム
+# 授業カリキュラム
+高専3年の後期に行われた授業です。
 この授業ではさくらインターネットのクラウドを使って、WEBやLinuxを学習する授業でした。htmlやcssをサーバーでapacheで配信して、webサーバーを構築してみよう！という実習でした。
 
-### 一応共同開発
+## 一応共同開発
 ランダムで３人のチームが作られ、そのチームで企画・実装・発表する形式です。僕以外はプログラミングはできない人だったので、実装全般は僕が担当しました。
 
 企画やプレゼンは班の人に任せて、技術的な事はワンオペ
 
 ---
 
-## 作ったもの
+# 作ったもの
 ソースコードはこちら↓
 <LinkCard href="https://github.com/RRiverWest/gomoku-narabe" />
 せっかくさくらインターネットのリモートマシンを借りれるのに、静的サイトではもったいない！と思い、オンラインでリアルタイム対戦できる五目並べゲームを作りました。どうせ実装は俺一人になりそうだから、フロントはReactでいいか...。ルーム対戦とかにしたいから動的ルーティングして...、よしNextjsでいいや！
 
 てなわけで、htmlとかcssでWEBページ作る実習でNextjsを使う、クセ強プロジェクトが始動しました。
 
-### 主な機能
+## 主な機能
 1. 五目並べなので、ルームをが作成され、そこで対戦
 1. websocketによりリアルタイムで盤面が反映
 1. 対戦状況、プレイヤー人数、観戦者数がわかりやすく、ルーム入室ボタンですぐに参加できるロビー(HOME)画面
@@ -40,7 +48,7 @@ import { LinkCard } from "@/components/link-card";
 1. リモートの対戦相手の退出・セッション終了を検知して勝利アラート
 1. 勝敗判定アルゴリズムにより決着がつき次第、勝利・敗北を知らせるアラート
 
-### 技術スタック
+## 技術スタック
 - Nextjs
 - react-konva
 - Socket.io
@@ -48,7 +56,7 @@ import { LinkCard } from "@/components/link-card";
 - Docker / Docker compose
 - Nginx(リバースプロキシ)
 
-### スクリーンショット
+## スクリーンショット
 ![ホーム画面](/tech/other/gomoku-home.png)
 ホーム画面（ロビー画面）です。ルームの一覧が見えます。ルーム情報は随時更新
 <br />
@@ -61,7 +69,7 @@ import { LinkCard } from "@/components/link-card";
 ![勝利通知](/tech/other/gomoku-win.png)
 勝利したときの通知です
 
-## 振り返って
+# 振り返って
 開発期間の都合上、DBを導入することができませんでした。ユーザー認証により過去の対戦データの記録などを残しておけるようにできれば達成率100%でした。
 とはいえ他のチームと被っているわけでも無かったのでヨシとしよう。
 やり直せるなら、UIをもっとこだわりたいです！
